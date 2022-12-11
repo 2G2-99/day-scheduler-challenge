@@ -2,21 +2,11 @@
 // # Elements of the DOM
 let timeBlock = $('.hour');
 let timeSlot = $('.time-slot');
-
+let saveButton = $('.save-button');
 // # Variables
 let currentTime = Number(moment().format('H'));
-console.log(currentTime);
 
-// * TASK 1
-// todo
-// Create a table with bootstrap
-// The table must have three columns...
-// HOUR
-// EVENT (Text area)
-// SAVE BUTTON
-
-// todo
-// Each table row should be dynamically get a background color based
+// Function to give a background color to each time slot
 function getBackground() {
 	let hourId = Number(this.id);
 
@@ -27,26 +17,40 @@ function getBackground() {
 	} else if (hourId > currentTime) {
 		$(this).next().addClass('future');
 	}
-	console.log(hourId);
 }
+
+// Iteration over the timeBlock
 timeBlock.each(getBackground);
 
-// * TASK 2
-// todo
-// At top show the current day
+// function to show current date
 function currentDate() {
 	let date = moment(new Date()).format('dddd, MMMM Do YYYY');
 	return $('#current-day').text(date);
 }
 currentDate();
-// Each time block should have a color code...
-// PAST: grey
-// CURRENT: orange
-// AHEAD: lightgreen
+
+// function to stop default of textarea
+$(document).ready(function () {
+	$('textarea').keypress(function (event) {
+		if (event.keyCode == 13) {
+			event.preventDefault();
+		}
+	});
+});
 
 // * TASK 3
 // todo
 // Use local storage to keep the entered data after SAVE BUTTON is clicked
 // The events persist even after refresh
+
+// Function to save when button gets clicked
+$('.save-button').on('click', function (event) {
+	let calendarItem =
+		event.target.parentElement.parentElement.previousElementSibling
+			.firstChild.nextElementSibling;
+	console.log(calendarItem);
+	console.log(event.target.attributes[0].value);
+	localStorage.setItem(event.target.attributes[0].value, calendarItem);
+});
 
 // TODO: As bonus create a button at the bottom that clears out the app
