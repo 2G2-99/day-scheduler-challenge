@@ -1,5 +1,12 @@
 'use strict';
-// #PSEUDOCODE
+// # Elements of the DOM
+let timeBlock = $('.hour');
+let timeSlot = $('.time-slot');
+
+// # Variables
+let currentTime = Number(moment().format('H'));
+console.log(currentTime);
+
 // * TASK 1
 // todo
 // Create a table with bootstrap
@@ -10,6 +17,19 @@
 
 // todo
 // Each table row should be dynamically get a background color based
+function getBackground() {
+	let hourId = Number(this.id);
+
+	if (hourId === currentTime) {
+		$(this).next().addClass('present');
+	} else if (hourId < currentTime) {
+		$(this).next().addClass('past');
+	} else if (hourId > currentTime) {
+		$(this).next().addClass('future');
+	}
+	console.log(hourId);
+}
+timeBlock.each(getBackground);
 
 // * TASK 2
 // todo
