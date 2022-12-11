@@ -34,6 +34,11 @@ timeBlock.each(getBackground);
 // * TASK 2
 // todo
 // At top show the current day
+function currentDate() {
+	let date = moment(new Date()).format('dddd, MMMM Do YYYY');
+	return $('#current-day').text(date);
+}
+currentDate();
 // Each time block should have a color code...
 // PAST: grey
 // CURRENT: orange
