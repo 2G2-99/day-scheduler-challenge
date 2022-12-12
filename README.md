@@ -20,3 +20,5 @@ Also the application counts with a color based system, allowing you to determine
 ## Link to the webpage
 
 This site has been published through GitHub Pages.
+
+-   https://2g2-99.github.io/day-scheduler-challenge/
